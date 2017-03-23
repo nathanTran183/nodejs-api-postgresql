@@ -10,7 +10,9 @@ module.exports = (app) => {
     }));
 
     app.get('/api/todos', todosController.list);
-    app.post('/api/todos/add', todosController.create);
+    app.post('/api/todos', todosController.create);
+    app.get('/api/todos/:todoId', todosController.get);
+    app.put('/api/todos/:todoId', todosController.update);
 
     app.post('/api/todos/:todoId/todoItems/add', todoItemsController.create);
 }
