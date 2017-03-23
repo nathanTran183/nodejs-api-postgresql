@@ -65,4 +65,20 @@ module.exports = {
             })
             .catch((err) => res.status(400).send(err));
     },
+    delete(req, res) {
+        return Todo
+            .findById(req.params.todoId)
+            .then(todo => {
+                if(!todo){
+                    return res.status(404).send({
+                        message: 'Todo Not Found',
+                    });
+                }
+                return todo
+                    .destroy()
+                    .then(()=> res.status(204).send())
+                    .catch(err => res.status(400).send(err));
+            })
+            .catch(err => res.status(400).then(err));
+    },
 };
